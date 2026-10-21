@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>سبز | پیام‌رسان</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">س</div>
+        <div>
+          <h1>سبز</h1>
+          <p>پیام‌رسان خصوصی تو</p>
+        </div>
+      </div>
+      <button id="logoutBtn" class="btn secondary hidden">خروج</button>
+    </header>
+
+    <section id="authView" class="auth-layout">
+      <div class="hero">
+        <span class="eyebrow">ارتباط ساده، امن و سریع</span>
+        <h2>گفت‌وگوهایت،<br><span>دنیای خودت.</span></h2>
+        <p>لابی بساز، دوست‌هایت را دعوت کن و در لحظه پیام بده.</p>
+        <div class="glow-orb"></div>
+      </div>
+
+      <div class="panel auth-panel">
+        <div class="tabs">
+          <button id="loginTab" class="tab active">ورود</button>
+          <button id="registerTab" class="tab">ثبت‌نام</button>
+        </div>
+
+        <form id="authForm">
+          <label for="username">نام کاربری</label>
+          <input id="username" name="username" minlength="3"
+            maxlength="20" pattern="[a-zA-Z0-9_]+" required
+            placeholder="مثلاً sabz_user" autocomplete="username">
+
+          <label for="password">رمز عبور</label>
+          <input id="password" name="password" type="password"
+            minlength="8" maxlength="72" required
+            placeholder="حداقل ۸ کاراکتر" autocomplete="current-password">
+
+          <button id="authSubmit" class="btn primary full" type="submit">ورود به حساب</button>
+          <p id="authError" class="error" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="dashboardView" class="dashboard hidden">
+      <div class="welcome">
+        <div>
+          <span class="eyebrow">خوش برگشتی</span>
+          <h2>سلام، <span id="currentUser"></span> 👋</h2>
+          <p>برای شروع، یک لابی بساز یا با کد دوستت وارد شو.</p>
+        </div>
+        <div class="online-dot">● آنلاین</div>
+      </div>
+
+      <div class="action-grid">
+        <form id="createForm" class="panel action-card">
+          <div class="card-icon">✦</div>
+          <h3>ساخت لابی</h3>
+          <p>یک فضای خصوصی برای گفت‌وگو بساز.</p>
+          <label for="lobbyName">نام لابی</label>
+          <input id="lobbyName" maxlength="40" required placeholder="دورهمی دوستان">
+          <button class="btn primary full" type="submit">ساخت لابی جدید</button>
+        </form>
+
+        <form id="joinForm" class="panel action-card">
+          <div class="card-icon">⌘</div>
+          <h3>ورود با کد</h3>
+          <p>کد دعوت را از دوستت بگیر.</p>
+          <label for="lobbyCode">کد دعوت</label>
+          <input id="lobbyCode" maxlength="6" required placeholder="مثلاً A1B2C3" dir="ltr">
+          <button class="btn secondary full" type="submit">ورود به لابی</button>
+        </form>
+      </div>
+
+      <div class="section-heading">
+        <h3>لابی‌های من</h3>
+        <span id="lobbyCount">۰ لابی</span>
+      </div>
+      <div id="lobbyList" class="lobby-list"></div>
+      <p id="dashboardError" class="error" role="status"></p>
+    </section>
+
+    <section id="chatView" class="chat-view hidden">
+      <div class="chat-header">
+        <button id="backBtn" class="btn secondary">← برگشت</button>
+        <div class="chat-title">
+          <h2 id="chatName">لابی</h2>
+          <span>کد دعوت: <b id="chatCode" dir="ltr"></b></span>
+        </div>
+        <button id="copyCodeBtn" class="btn secondary">کپی کد</button>
+      </div>
+
+      <div id="messages" class="messages"></div>
+
+      <form id="messageForm" class="message-form">
+        <input id="messageInput" maxlength="1000" required
+          placeholder="پیامت رو بنویس..." autocomplete="off">
+        <button class="btn primary" type="submit">ارسال ↑</button>
+      </form>
+      <p id="chatError" class="error" role="status"></p>
+    </section>
+
+    <footer>ساخته‌شده برای گفت‌وگوهای بهتر <span>✦</span></footer>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
